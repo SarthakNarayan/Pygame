@@ -15,8 +15,8 @@ class Circle:
         self.x = random.randint(self.radius, width-self.radius-10)
         self.y = random.randint(self.radius, height-self.radius-10)
         self.mass = math.sqrt(self.radius)/2
-        self.speedx = 2*(random.random()+1.0)/self.mass
-        self.speedy = 2*(random.random()+1.0)/self.mass
+        self.speedx = 1*(random.random()+1.0)/self.mass
+        self.speedy = 1*(random.random()+1.0)/self.mass
 
 class BigCircle():
     def __init__(self):
@@ -27,7 +27,7 @@ class BigCircle():
         self.speedx = 1*(random.random()+1.0)/self.mass
         self.speedy = 1*(random.random()+1.0)/self.mass
         
-no_of_small_circles = 30
+no_of_small_circles = 1
 no_of_large_circles = 1
 for _ in range(no_of_small_circles):
     Circles.append(Circle())
@@ -75,8 +75,8 @@ def CircleCollide(C1,C2):
     C1.speedy = YSpeed
 def Move():
     for Circle in Circles:
-        Circle.x += Circle.speedx
-        Circle.y += Circle.speedy
+        Circle.x += Circle.speedx * random.random()
+        Circle.y += Circle.speedy 
         # if (Circle.x + Circle.radius) >= width:
         #     for i in range (200):
         #         Circle.x -=Circle.speedx

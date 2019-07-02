@@ -5,7 +5,7 @@ import math
 background_colour = (0,0,0)
 (width, height) = (800, 600)
 # mass_of_air = 0.2
-elasticity = 1
+elasticity = 0.98
 clock = pygame.time.Clock()
 
 def addVectors(angle1, length1, angle2, length2):
@@ -87,7 +87,7 @@ class Particle():
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Brownian Motion Simulation')
 
-number_of_particles_small = 100
+number_of_particles_small = 1
 number_of_particles_big = 1
 my_particles = []
 
