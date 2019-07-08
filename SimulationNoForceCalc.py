@@ -11,14 +11,17 @@ clock = pygame.time.Clock()
 Circles = []
 class Circle:
     def __init__(self):
+        # radius of the ball
         self.radius = 15
+        # Random area of spawning but making sure that it is within the area
         self.x = random.randint(self.radius, width-self.radius-10)
         self.y = random.randint(self.radius, height-self.radius-10)
+        # assigning mass based on 
         self.mass = math.sqrt(self.radius)/2
         self.speedx = 1*(random.random()+1.0)/self.mass
         self.speedy = 1*(random.random()+1.0)/self.mass
 
-class BigCircle():
+class BigCircle:
     def __init__(self):
         self.radius = 35
         self.x = random.randint(self.radius, width-self.radius-10)
