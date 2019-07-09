@@ -10,6 +10,7 @@ height = 600
 
 # initializing the frame
 Surface = pygame.display.set_mode((width,height))
+pygame.display.set_caption("Brownian Motion Simulation")
 clock = pygame.time.Clock()
 Circles = []
 
@@ -30,16 +31,19 @@ class Circle:
 class BigCircle:
     def __init__(self):
         self.radius = 35
+        # Random spawning
         # self.x = random.randint(self.radius, width-self.radius-10)
         # self.y = random.randint(self.radius, height-self.radius-10)
-        self.x = 750
-        self.y = 50
+
+        # Making sure it spawns at the center
+        self.x = width/2
+        self.y = height/2
         self.mass = math.sqrt(self.radius)/2
         self.speedx = 1*(random.random()+1.0)/self.mass
         self.speedy = 1*(random.random()+1.0)/self.mass
 
 # no of small or large circles required in simulation
-no_of_small_circles = 80
+no_of_small_circles = 40
 no_of_large_circles = 1
 
 # Creating small circles
@@ -159,6 +163,7 @@ def CollisionDetect():
 # Function for drawing the circles
 def Draw():
     Surface.fill((0,0,0))
+    pygame.draw.rect(Surface, (0,255,0), (15,15,770,570), 1)
     for Circle in Circles[:-no_of_large_circles]:
         pygame.draw.circle(Surface,(0,0,255),(int(Circle.x),int(height-Circle.y)),Circle.radius)
     for Circle in Circles[-no_of_large_circles:]:
@@ -167,6 +172,7 @@ def Draw():
 
 # Function for getting keyboard input
 def GetInput():
+    Circle = Circles[-1]
     keystate = pygame.key.get_pressed()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -176,6 +182,19 @@ def GetInput():
                 if event.key == pygame.K_q:
                     pygame.quit()
                     sys.exit()
+                
+                # Keys for manually controlling the red ball
+                # Use only when it gets stuck somewhere
+                if event.key == pygame.K_LEFT:
+                    Circle.x -= 20
+                if event.key == pygame.K_RIGHT:
+                    Circle.x += 20
+                if event.key == pygame.K_UP:
+                    Circle.y += 20
+                if event.key == pygame.K_DOWN:
+                    Circle.y -= 20
+
+
 
 def main():
     while True:
